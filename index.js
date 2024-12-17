@@ -1407,19 +1407,3 @@ function selectRandomAddress(addresses) {
 		addresses;
 	return addressArray[Math.floor(Math.random() * addressArray.length)];
 }
-export default {
-  async fetch(request, env, ctx): Promise<Response> {
-    if (request.cf?.colo === 'HKG') {
-
-      return await fetch(request.url, {
-        body: request.body,
-        method: request.method,
-        headers: request.headers,
-      });
-    }
-
-    // const res = await (await fetch('...')).text();
-    const res = request.cf;
-    return new Response(JSON.stringify(res));
-  },
-} satisfies ExportedHandler<Env>;
